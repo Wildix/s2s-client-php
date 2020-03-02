@@ -1,5 +1,5 @@
 {
-    "name": "wildix/integrations",
+    "name": "wildix/s2s-client-php",
     "license": "MIT",
     "homepage": "http://wildix.com/",
     "description": "php sdk wildix",
