@@ -3,6 +3,9 @@ Wildix Integration, PHP HTTP client
 Wildix Integration is a PHP HTTP client that makes it easy to send HTTP requests and
 trivial to integrate with web services.
 
+```bash
+$ composer require wildix/s2s-client-php
+```
 ## Example 
 
 ### Create instance
@@ -77,7 +80,7 @@ $options = [
     ]
 ];
 
-##### $client->post(apiPoint[, $options]);
+$client->post(apiPoint[, $options]);
 ```
 ### Request options config
 ```php
