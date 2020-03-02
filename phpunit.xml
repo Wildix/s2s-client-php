@@ -1,0 +1,45 @@
+ <phpunit
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.0/phpunit.xsd"
+            backupGlobals="true"
+            backupStaticAttributes="false"
+            bootstrap="tests/bootstrap.php"
+            cacheTokens="false"
+            colors="true"
+            convertErrorsToExceptions="true"
+            convertNoticesToExceptions="true"
+            convertWarningsToExceptions="true"
+            forceCoversAnnotation="false"
+            beStrictAboutTestsThatDoNotTestAnything="true"
+            beStrictAboutCoversAnnotation="true"
+            beStrictAboutOutputDuringTests="true"
+            beStrictAboutChangesToGlobalState="false"
+
+            processIsolation="false"
+            stopOnError="false"
+            stopOnFailure="false"
+            stopOnIncomplete="false"
+            stopOnSkipped="false"
+            stopOnRisky="false"
+
+            timeoutForSmallTests="1"
+            timeoutForMediumTests="10"
+            timeoutForLargeTests="60"
+            verbose="false">
+    <testsuites>
+        <testsuite name="Facebook PHP SDK Test Suite">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src/</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false" showOnlySummary="true"/>
+        <log type="coverage-html" target="tests/report" lowUpperBound="35" highLowerBound="70"/>
+        <log type="coverage-xml" target="tests/report/coverage-xml" lowUpperBound="35" highLowerBound="70"/>
+        <log type="junit" target="tests/report/phpunit.junit.xml"/>
+    </logging>
+</phpunit>
