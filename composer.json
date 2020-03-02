@@ -1,10 +1,10 @@
 {
     "name": "wildix/s2s-client-php",
+    "type": "library",
     "version": "1.0.0",
     "license": "MIT",
     "homepage": "http://wildix.com/",
     "description": "php sdk wildix",
-    "prefer-stable": true,
     "require": {
         "php": ">=7.1.0",
         "ext-curl": "*",
