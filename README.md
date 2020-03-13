@@ -17,7 +17,7 @@ $config = [
     'app_name' => 'APP_NAME',
 ];
 
-$client = new \Wildix\Integration\Client($config, []);
+$client = new \Wildix\Integrations\Client($config, []);
 ```
 
 ### Create custom instance defaults
