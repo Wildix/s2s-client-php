@@ -2,6 +2,7 @@
     "name": "wildix/s2s-client-php",
     "type": "library",
     "version": "1.0.0",
+    "minimum-stability": "stable",
     "license": "MIT",
     "homepage": "http://wildix.com/",
     "description": "php sdk wildix",
