@@ -51,8 +51,7 @@ class RequestFactory
      */
     public function createRequest(string $method, string $endpoint, array $params = [], array $body = [], array $customHeaders = []): RequestInterface
     {
-        $query = [];
-        parse_str(parse_url($endpoint, PHP_URL_QUERY), $query);
+        parse_str(parse_url($endpoint, PHP_URL_QUERY) ?? '', $query);
         $endpoint = parse_url('/' . ltrim(trim($endpoint), '/'), PHP_URL_PATH);
         $params = array_merge($query, $params);
         $body = in_array($method, self::NOT_BODY_METHODS) ? [] : $body;
