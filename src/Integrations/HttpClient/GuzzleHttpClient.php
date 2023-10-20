@@ -27,11 +27,15 @@ class GuzzleHttpClient implements HttpClientInterface
      */
     public function send(RequestInterface $request): ResponseInterface
     {
+        $contentType = $request->getHeader('Content-Type');
+        $isJson = count($contentType) && strpos(strtolower($contentType[0]), 'application/json') !== false;
+
         try {
             $options = [
                 'headers' => $request->getHeaders(),
-                'form_params' => $request->getBody()
+                ($isJson ? 'json' : 'form_params') => $request->getBody(),
             ];
+
             $response = $this->client->request($request->getMethod(), $request->getRequestTarget(), $options);
         } catch (ClientException $e) {
             $response = $e->getResponse();
