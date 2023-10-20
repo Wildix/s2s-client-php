@@ -11,8 +11,8 @@ class RequestTest extends TestCase
     private const TIMEOUT = 5;
 
     private $factory;
-    
-    protected function setUp()
+
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -73,6 +73,41 @@ class RequestTest extends TestCase
                         'field2' => 'value2',
                     ],
                     'headers' => ['headers-one' => 'test'],
+                ]
+            ],
+            'post_tree_data' => [
+                'POST',
+                '/api/test/point?aaa=bbb&ccc=ddd',
+                [],
+                [
+                    'field1' => 'value1',
+                    'field2' => [
+                        'a' => 'value2',
+                        'b' => [
+                            'c' => 'value3'
+                        ]
+                    ],
+                ],
+                [
+                    'headers-one' => 'test'
+                ],
+                [
+                    'method' => 'POST',
+                    'endpoint' => '/api/test/point?aaa=bbb&ccc=ddd',
+                    'params' => [
+                        'aaa' => 'bbb',
+                        'ccc' => 'ddd',
+                    ],
+                    'body' => [
+                        'field1' => 'value1',
+                        'field2' => [
+                            'a' => 'value2',
+                            'b' => [
+                                'c' => 'value3'
+                            ]
+                        ],
+                    ],
+                    'headers' => ['headers-one' => 'test', 'content-type' => 'application/json'],
                 ]
             ],
             'put' => [
@@ -146,9 +181,9 @@ class RequestTest extends TestCase
     {
         $request = $this->factory->createRequest($method, $endpoint, $params, $body, $headers);
 
-        $this->assertEquals($request->getMethod(), $result['method']);
-        $this->assertEquals($request->getRequestTarget(), $result['endpoint']);
-        $this->assertEquals($request->getBody(), $result['body']);
+        $this->assertEquals($result['method'], $request->getMethod());
+        $this->assertEquals($result['endpoint'], $request->getRequestTarget());
+        $this->assertEquals($result['body'], $request->getBody());
         $this->assertArrayHasKey('headers-one', $request->getHeaders());
         $this->assertArrayHasKey('Host', $request->getHeaders());
         $this->assertArrayHasKey('X-APP-ID', $request->getHeaders());

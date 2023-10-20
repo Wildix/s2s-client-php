@@ -24,13 +24,13 @@ class ClientTest extends TestCase
 
     private $requestFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->requestFactory = new RequestFactory(self::CONFIG['host'], self::CONFIG['app_id'], self::CONFIG['app_name'], self::CONFIG['secret_key']);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
@@ -175,7 +175,7 @@ class ClientTest extends TestCase
             ->andReturn($client);
         $integration = new Client(self::CONFIG, []);
         $res = $integration->$method('api/v1/ping/test', $params);
-        $this->assertEquals($res, $response);
-        $this->assertEquals($res->getStatusCode(), 200);
+        $this->assertEquals($response, $res);
+        $this->assertEquals(200, $res->getStatusCode());
     }
 }
